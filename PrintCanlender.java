@@ -1,8 +1,9 @@
+package printcalendar;
 import java.util.Scanner;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
-public class PrintCanlender {
+public class PrintCalendar {
 	
 	public static void main(String[] args)
 	{	
@@ -12,7 +13,7 @@ public class PrintCanlender {
 		int userDate = 0;
 		String monthName = "";
 		Locale locale = Locale.getDefault();
-		System.out.println("Enter the month: ");
+		System.out.println("Enter the month (0 - 11): ");
 		userMonth = ns.nextInt(); //gets user month of choice based on number of the month
 		ns.nextLine();
 		System.out.println("Enter the year: ");
@@ -46,46 +47,40 @@ public class PrintCanlender {
 	      case 10: monthName = "November"; break;
 	      case 11: monthName = "December";
 		}
-		System.out.printf("%24s, %s\n", monthName, year); // title
-		System.out.println("--------------------------------------------------------");
-		System.out.println("Sunday Monday Tuesday Wednesday Thursday Friday Saturday"); // days
-		for (int i = 1; i <= amount; i++) 
+		System.out.printf("%33s, %s\n", monthName, year); // title
+		System.out.println("----------------------------------------------------------------");
+		System.out.println("   Sunday   Monday Tuesday Wednesday Thursday   Friday Saturday"); // days
+		
+                int days7 = 0;
+                
+                
+                for (int i = 1; i <= amount; i++) 
 		{
 			
 			if (i == 1) // every 7 lines the loop will break a line to keep the table looking neat
 			{
-				for(int x = 0; firstDay > x; x++) // spacing for first day of the day
+				for(int x = 1; x < firstDay; x++) // spacing for first day of the day
 				{
-					if (x >= 4) 
-					{
-						System.out.printf("            "); 
-					}
 					
-					else if(x <= 1) 
-					{
-						System.out.printf("    ");
-					}
-					else 
-					{
-						System.out.printf("      ");
-						
-						
-					}
+                                    System.out.printf("         "); 
+                                    days7 = x;
+					
+					
 					
 				}
 				
-				System.out.println(i);
+				System.out.printf("%9d", i);
 				
 				
 			}
 			
-			else if(i > 1) {
-				if (i % 7 == 0) // every 7 lines the loop will break a line to keep the table looking neat
+			else if(i >= 1) {
+				if ((i + days7) % 7 == 0) // every 7 lines the loop will break a line to keep the table looking neat
 				{
-					System.out.printf("%-8d \n", i);
+                                    System.out.printf("%9d\n", i);
 				}
 				else {
-				System.out.printf("%-8d ", i);
+                                    System.out.printf("%9d", i);
 				}
 			}
 			
